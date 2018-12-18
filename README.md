@@ -26,7 +26,7 @@ let data = {
   database1: ';show tables',
   anyone1: 'abc'
 }
-// int,str,bool,obj,arr,db they are Parameter Types
+// int,str,bool,obj,arr,db  They are Parameter Types
 let {
   int: {number1},
   str: {string1},
@@ -36,7 +36,7 @@ let {
   db: {database1},
   anyone1,
   aab,
-  RESULT,  // The result is a required parameter before, and the result is an optional parameter.
+  RESULT,  // It is a mandatory parameter before it, after which it is an optional parameter
   xyz,
 } = util.ParamProxy(data)
 //let aab=1
