@@ -1,7 +1,7 @@
 ***
 
  * ### Parameter validator
- * ### Hot Reloading
+ * ### Hot reloading
 
 ***
 
