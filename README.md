@@ -26,7 +26,7 @@ let data = {
   database1: ';show tables',
   anyone1: 'abc'
 }
-// int,str,bool,obj,arr,db is a Parameter Types
+// int,str,bool,obj,arr,db is an Parameter Types
 let {
   int: {number1},
   str: {string1},
