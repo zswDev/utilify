@@ -21,3 +21,11 @@ let {
   RESULT
 } = util.ParamProxy(data)
 console.log(number1, string1, boolean1, object1, array1, database1, anyone1, aab, RESULT)
+
+util.hotReload()
+
+let d = require('./hot-reload')
+setInterval(() => {
+  d(6661)
+  console.log('real-time-value',d.id)
+}, 2000)

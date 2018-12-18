@@ -328,6 +328,84 @@
     })
     return _p
   }
-
   // 总概念，利用 proxy+解构 完成参数验证 let {a,b,c} = new Proxy({},{get(){}})
+
+  _util.hotReload = function () {
+    if (typeof require === 'undefined') throw new Error('this is nodejs function')
+
+    // 只执行一次
+    if (global.HAS_WATCH) return
+    global.HAS_WATCH = true
+
+    let fs = require('fs')
+    let path = require('path')
+    let Module = require('module')
+
+     // 重写定时器
+    let _time_func = {
+      1: [setTimeout, clearTimeout],
+      2: [setInterval, clearInterval],
+      3: [setImmediate, clearImmediate]
+    }
+
+    let _timer = []
+    let _p_time = (key) => {
+      return (...param) => {
+        let [create, clear] = _time_func[key]
+        _timer.push({
+          clear,
+          time: create(...param)
+        })
+      }
+    }
+
+    global.setTimeout = _p_time(1)
+    global.setInterval = _p_time(2)
+    global.setImmediate = _p_time(3)
+
+    let r1 = require
+    let r2 = Module.prototype.require
+    fs.watch('./', {
+      recursive: true
+    }, (event, filename) => {
+      let _path = path.join(__dirname, filename)
+      if (event === 'change' && r1.cache[_path]) {
+        let origin = r1.cache[_path]
+        Reflect.deleteProperty(r1.cache, _path)
+
+        // 清空定时器
+        _timer.map((f1) => f1.clear(f1.time))
+        _timer = []
+
+        try {
+          r2(_path)
+        } catch (e) {
+          console.log(e)
+          r1.cache[_path] = origin
+        }
+        console.log('hot reloaded ', _path)
+      }
+    })
+
+    Module.prototype.require = function (_path) {
+      _path = Module._resolveFilename(_path, this)
+      r2(_path)
+      let _p = new Proxy(() => {}, {
+        get (target, key) {
+          return r1.cache[_path].exports[key]
+        },
+        set (target, key, value) {
+          // TODO 处理失败情况
+          r1.cache[_path].exports[key] = value
+          return true
+        },
+        apply (target, thisArg, argumentsList) {
+          (typeof r1.cache[_path].exports === 'function') && r1.cache[_path].exports.bind(thisArg)(...argumentsList)
+        }
+      })
+      return _p
+    }
+  }
+
+  // 总概念，利用 fs.watch + require + proxy 来实现 热更新，监听改变的文件，修改require.cache ，调用时 通过proxy 动态引用
 })()
