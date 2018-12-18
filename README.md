@@ -1,21 +1,22 @@
-***
+
 
  * ### Parameter validator
  * ### Hot reloading
 
-***
+
 
 # doc
->## *ParamProxy(target, conf)* 
 
-#### Verification parameter
+
+## ParamProxy(target, conf)
+
+Verification parameter
 * *target*: Original object
 * *conf*: default value
 
->## *hotReload()* 
-#### hot reloading code
+## hotReload()
+hot reloading code
 
-***
 
 # test
 
