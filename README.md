@@ -5,20 +5,20 @@
 
 
 
-# doc
+## doc
 
 
-## ParamProxy(target, conf)
+### ParamProxy(target, conf)
 
 Verification parameter
 * *target*: Original object
 * *conf*: default value
 
-## hotReload()
+### hotReload()
 hot reloading code
 
 
-# test
+## test
 
  ```javascript
 
