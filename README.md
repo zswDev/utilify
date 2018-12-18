@@ -39,7 +39,7 @@ let {
   RESULT,  // It is a mandatory parameter before it, after which it is an optional parameter
   xyz,
 } = util.ParamProxy(data)
-//let aab=1
+// let aab=1
 console.log(number1, string1, boolean1, object1, array1, database1, anyone1, aab, RESULT, xyz)
 
 ---------------------
