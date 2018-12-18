@@ -360,7 +360,7 @@
         } else {
           _line = _line[1]
         }
-        _line = _line.split('\n')[0].substring(1, _line.length - 2).split(':')
+        _line = _line.substring(0, _line.length - 2).substring(1, _line.length - 2).split(':')
         _line = `${_line[0]}:${_line[1]}`
 
         let [create, clear] = _time_func[key]
