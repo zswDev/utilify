@@ -93,6 +93,7 @@ real-time-value 123
 ### paramProxy()
 
 * More configuration items
+* Hot updates when deleting files
 
 
 ### hotReload()
