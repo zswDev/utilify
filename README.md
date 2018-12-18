@@ -13,6 +13,7 @@
 Verification parameter
 * *target*: Original object
 * *conf*: default value
+##### *index.test.js*
 ```javascript
 let util = require('./index')
 
@@ -48,6 +49,17 @@ console.log(number1, string1, boolean1, object1, array1, database1, anyone1, aab
 
 ### hotReload()
 hot reloading code
+
+##### *hot-reload.js*
+```javascript
+let Node = (param) => {
+  console.log('real-time-func',param,12)
+}
+Node.id = 123
+
+module.exports = Node
+```
+##### *index.test.js*
 ```javascript
 let util = require('./index')
 
@@ -55,7 +67,7 @@ util.hotReload()
 
 let d = require('./hot-reload')
 setInterval(() => {
-  d(6661)
+  d(666) // d(66611)  Modify it  
   console.log('real-time-value',d.id)
 }, 2000)
 
