@@ -92,7 +92,7 @@ real-time-value 123
 
 ### paramProxy()
 
-* More configuration
+* More configuration items
 
 
 ### hotReload()
