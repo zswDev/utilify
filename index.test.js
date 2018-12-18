@@ -18,9 +18,11 @@ let {
   db: {database1},
   anyone1,
   aab,
-  RESULT
+  RESULT,  // Before must be filled in, then optional
+  xyz,
 } = util.ParamProxy(data)
-console.log(number1, string1, boolean1, object1, array1, database1, anyone1, aab, RESULT)
+//let aab=1
+console.log(number1, string1, boolean1, object1, array1, database1, anyone1, aab, RESULT, xyz)
 
 util.hotReload()
 
