@@ -1,0 +1,22 @@
+{
+  "name": "utilify",
+  "version": "1.0.0",
+  "description": "util",
+  "main": "index.js",
+  "scripts": {
+    "test": "run index.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://zswDev:zqj1996@github.com/zswDev/utilify.git"
+  },
+  "keywords": [
+    "util"
+  ],
+  "author": "zswDev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zswDev/utilify/issues"
+  },
+  "homepage": "https://github.com/zswDev/utilify#readme"
+}
