@@ -352,10 +352,12 @@
     let _p_time = (key) => {
       return (...param) => {
         let [create, clear] = _time_func[key]
+        let _t = create(...param)
         _timer.push({
           clear,
-          time: create(...param)
+          time: _t
         })
+        return _t
       }
     }
 
