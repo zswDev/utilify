@@ -8,7 +8,7 @@
 ## doc
 
 
-### ParamProxy(target, conf)
+### paramProxy(target, conf)
 
 Verification parameter
 * *target*: Original object
@@ -38,7 +38,7 @@ let {
   aab,
   RESULT,  // It is a mandatory parameter before it, after which it is an optional parameter
   xyz,
-} = util.ParamProxy(data)
+} = util.pramProxy(data)
 // let aab=1
 console.log(number1, string1, boolean1, object1, array1, database1, anyone1, aab, RESULT, xyz)
 
@@ -88,3 +88,15 @@ real-time-value 123
  > node index.test.js
 
  ```
+ ## TODO
+
+### paramProxy()
+
+* More configuration
+
+
+### hotReload()
+
+* Join non-updateable configuration
+
+With multiple methods...

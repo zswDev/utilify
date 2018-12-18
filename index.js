@@ -293,7 +293,7 @@
 
   // conf 设置默认值
   // TODO 设置其他限制，如长度等
-  _util.ParamProxy = (obj, conf = {}) => {
+  _util.paramProxy = (obj, conf = {}) => {
     let _p = {}
     let _err = [] // 错误堆栈
     let _get = function (target, key) {
