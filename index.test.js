@@ -29,6 +29,6 @@ util.hotReload()
 
 let d = require('./hot-reload')
 setInterval(() => {
-  d(666)
+  d(6661)
   console.log('real-time-value',d.id)
 }, 2000)
