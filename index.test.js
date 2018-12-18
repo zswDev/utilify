@@ -9,6 +9,7 @@ let data = {
   database1: ';show tables',
   anyone1: 'abc'
 }
+// int,str,bool,obj,arr,db is Paramy Type
 let {
   int: {number1},
   str: {string1},
