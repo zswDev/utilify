@@ -99,5 +99,6 @@ real-time-value 123
 ### hotReload()
 
 * Join non-updateable configuration
+* Remove references
 
 ### With multiple methods...
