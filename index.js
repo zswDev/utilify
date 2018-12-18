@@ -349,16 +349,31 @@
     }
 
     let _timer = []
+
     let _p_time = (key) => {
-      return (...param) => {
+      const _obj_time = {}
+      let _func = (...param) => {
+        Error.captureStackTrace(_obj_time, _func) // 传入当前函数，就不会打印当前 函数调用堆栈
+        let _line = _obj_time.stack.split('at ')[1].split(' ')
+        if (_line[0].length > _line[1].length) {
+          _line = '(' + _line[0].replace(/\s/, ')\n')
+        } else {
+          _line = _line[1]
+        }
+        _line = _line.split('\n')[0].substring(1, _line.length - 2).split(':')
+        _line = `${_line[0]}:${_line[1]}`
+
         let [create, clear] = _time_func[key]
         let _t = create(...param)
-        _timer.push({
-          clear,
-          time: _t
-        })
+        let _data = {clear, time: _t}
+        if (_timer[_line]) {
+          _timer[_line].push(_data)
+        } else {
+          _timer[_line] = [_data]
+        }
         return _t
       }
+      return _func
     }
 
     global.setTimeout = _p_time(1)
@@ -376,8 +391,10 @@
         Reflect.deleteProperty(r1.cache, _path)
 
         // 清空定时器
-        _timer.map((f1) => f1.clear(f1.time))
-        _timer = []
+        if (_timer[_path]) {
+          _timer[_path].map((f1) => f1.clear(f1.time))
+          _timer[_path] = []
+        }
 
         try {
           r2(_path)

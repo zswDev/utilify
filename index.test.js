@@ -21,7 +21,7 @@ let {
   aab,
   RESULT,  // The result is a required parameter before, and the result is an optional parameter.
   xyz,
-} = util.ParamProxy(data)
+} = util.paramProxy(data)
 //let aab=1
 console.log(number1, string1, boolean1, object1, array1, database1, anyone1, aab, RESULT, xyz)
 
@@ -29,6 +29,6 @@ util.hotReload()
 
 let d = require('./hot-reload')
 setInterval(() => {
-  d(66611)
+  d(666)
   console.log('real-time-value',d.id)
 }, 2000)
