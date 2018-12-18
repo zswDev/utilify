@@ -42,7 +42,7 @@ let {
 // let aab=1
 console.log(number1, string1, boolean1, object1, array1, database1, anyone1, aab, RESULT, xyz)
 
----------------------
+----------------------------------------------------------------------------------------------
 > node index.test.js
 1 '2' true { a: 1 } [ 1, 'a' ] '\';show tables\'' 'abc' null 'aab is null or TYPE err' null 
 ```
@@ -71,7 +71,7 @@ setInterval(() => {
   console.log('real-time-value',d.id)
 }, 2000)
 
---------------------
+---------------------------------------------------------------------
 > node index.test.js
 real-time-func 666 12
 real-time-value 123
