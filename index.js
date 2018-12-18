@@ -348,7 +348,7 @@
       3: [setImmediate, clearImmediate]
     }
 
-    let _timer = []
+    let _timer = {}
 
     let _p_time = (key) => {
       const _obj_time = {}
