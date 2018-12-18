@@ -313,7 +313,6 @@
         if (_self.must) {
           if (!done) {
             if (conf[_self.type] !== undefined) { // 有默认值则不报错
-              _err = false
               return conf[_self.type]
             } else {
               _err.push(`${typeof key === 'string' ? key : 'PARAM'} is null or TYPE err`) // 入栈
