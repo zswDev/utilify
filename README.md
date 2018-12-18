@@ -13,10 +13,61 @@
 Verification parameter
 * *target*: Original object
 * *conf*: default value
+```javascript
+let util = require('./index')
+
+let data = {
+  number1: '1',
+  string1: 2,
+  boolean1: 'true',
+  object1: {a: 1},
+  array1: [1, 'a'],
+  database1: ';show tables',
+  anyone1: 'abc'
+}
+// int,str,bool,obj,arr,db is a Parameter Types
+let {
+  int: {number1},
+  str: {string1},
+  bool: {boolean1},
+  obj: {object1},
+  arr: {array1},
+  db: {database1},
+  anyone1,
+  aab,
+  RESULT,  // The result is a required parameter before, and the result is an optional parameter.
+  xyz,
+} = util.ParamProxy(data)
+//let aab=1
+console.log(number1, string1, boolean1, object1, array1, database1, anyone1, aab, RESULT, xyz)
+
+---------------------
+> node index.test.js
+1 '2' true { a: 1 } [ 1, 'a' ] '\';show tables\'' 'abc' null 'aab is null or TYPE err' null 
+```
 
 ### hotReload()
 hot reloading code
+```javascript
+let util = require('./index')
 
+util.hotReload()
+
+let d = require('./hot-reload')
+setInterval(() => {
+  d(6661)
+  console.log('real-time-value',d.id)
+}, 2000)
+
+--------------------
+> node index.test.js
+real-time-func 666 12
+real-time-value 123
+hot reloaded  C:\Users\Administrator\Desktop\git\utilify\index.test.js
+real-time-func 66611 12
+real-time-value 123
+
+```
 
 ## test
 

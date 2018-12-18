@@ -9,7 +9,7 @@ let data = {
   database1: ';show tables',
   anyone1: 'abc'
 }
-// int,str,bool,obj,arr,db is Paramy Type
+// int,str,bool,obj,arr,db is a Parameter Types
 let {
   int: {number1},
   str: {string1},
@@ -19,7 +19,7 @@ let {
   db: {database1},
   anyone1,
   aab,
-  RESULT,  // Before must be filled in, then optional
+  RESULT,  // The result is a required parameter before, and the result is an optional parameter.
   xyz,
 } = util.ParamProxy(data)
 //let aab=1
@@ -29,6 +29,6 @@ util.hotReload()
 
 let d = require('./hot-reload')
 setInterval(() => {
-  d(6661)
+  d(66611)
   console.log('real-time-value',d.id)
 }, 2000)
