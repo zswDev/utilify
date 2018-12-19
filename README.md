@@ -2,7 +2,7 @@
 
  * ### Parameter validator
  * ### Hot reloading
-
+ * ### Info Proxy
 
 
 ## doc
@@ -80,6 +80,25 @@ real-time-func 66611 12
 real-time-value 123
 
 ```
+
+### infoProxy()
+console.log proxy
+
+
+##### *index.test.js*
+```javascript
+let util = require('./index')
+
+util.infoProxy()
+
+console.log(123)
+
+-----------------------------------------------------------------
+> node index.test.js
+123
+at (C:\Users\Administrator\Desktop\git\utilify\index.test.js:38:9)
+```
+
 
 ## test
 
