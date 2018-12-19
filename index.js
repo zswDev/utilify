@@ -294,7 +294,6 @@
   // conf 设置默认值
   // TODO 设置其他限制，如长度等
   _util.paramProxy = (obj, conf = {}) => {
-    let _p = {}
     let _err = [] // 错误堆栈
     let _get = function (target, key) {
       let _self = this
@@ -303,9 +302,9 @@
         return _err.pop() // 出栈
       }
 
-      if (typeof verify[key] === 'function') { // 是验证类型
+      if (typeof verify[key] === 'function' && _self.index === 0) { // 是验证类型 且为第一层
         return new Proxy(obj, {
-          get: _get.bind({...this, type: key})
+          get: _get.bind({...this, type: key, index: 1})
         })
       } else {
         let func = verify[_self.type]
@@ -322,10 +321,9 @@
         return value
       }
     }
-    _p = new Proxy(obj, {
-      get: _get.bind({must: true, type: 'any'})
+    return new Proxy(obj, {
+      get: _get.bind({must: true, type: 'any', index: 0})
     })
-    return _p
   }
   // 总概念，利用 proxy+解构 完成参数验证 let {a,b,c} = new Proxy({},{get(){}})
 
