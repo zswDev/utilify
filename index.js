@@ -417,7 +417,14 @@
         },
         apply (target, thisArg, argumentsList) {
           // TODO 可以获得调用该函数的文件地址， 然后该函数提供一个 热重载时执行的回调方法 来清除 events 类似的东西 或继承当前引用
-          (typeof r1.cache[_path].exports === 'function') && r1.cache[_path].exports.bind(thisArg)(...argumentsList)
+          if (typeof r1.cache[_path].exports === 'function') {
+            return r1.cache[_path].exports.bind(thisArg)(...argumentsList)
+          }
+        },
+        construct (target, args) {
+          if (typeof r1.cache[_path].exports === 'function') { // new _p(...) 时调用
+            return new r1.cache[_path].exports(...args)
+          }
         }
       })
       return _p
