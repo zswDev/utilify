@@ -334,20 +334,19 @@
     if (global.HAS_WATCH) return
     global.HAS_WATCH = true
 
-    let fs = require('fs')
-    let path = require('path')
-    let Module = require('module')
+    const fs = require('fs')
+    const path = require('path')
+    const Module = require('module')
 
      // 重写定时器
-    let _time_func = {
+    const _time_func = {
       1: [setTimeout, clearTimeout],
       2: [setInterval, clearInterval],
       3: [setImmediate, clearImmediate]
     }
 
-    let _timer = {}
-
-    let _p_time = (key) => {
+    const _timer = {}
+    const _p_time = (key) => {
       const _obj_time = {}
       let _func = (...param) => {
         Error.captureStackTrace(_obj_time, _func) // 传入当前函数，就不会打印当前 函数调用堆栈
@@ -381,14 +380,70 @@
     global.setInterval = _p_time(2)
     global.setImmediate = _p_time(3)
 
-    let r1 = require
-    let r2 = Module.prototype.require
+    const r1 = require
+    const r2 = Module.prototype.require
+    const require_mmap = {}
+
+    const _getSelf = (_path, _origin) => {
+      let _self = r1.cache[_path]
+      if (_self === undefined) {  // 该对象是原生对象
+        _self = _origin
+      } else {
+        _self = _self.exports
+      }
+      return _self
+    }
+
+    const _require = function (_path) {
+      _path = Module._resolveFilename(_path, this)
+      let _origin = r2(_path)     // 原始引用对象, 每次热加载 都重新 require
+
+      let _proxy = require_mmap[_path]  // 是否已生成代理对象
+      if (_proxy !== undefined)  {
+        _proxy.time = Date.now()
+        return _proxy.value
+      }
+     
+      let _p = new Proxy(() => {}, {
+        get (target, key) {
+          return _getSelf(_path, _origin)[key]
+        },
+        set (target, key, value) {
+          let _self = _getSelf(_path, _origin)
+          if (_self[key] === undefined) return false
+          _self[key] = value
+          return true
+        },
+        apply (target, thisArg, argumentsList) {
+          // TODO 可以获得调用该函数的文件地址， 然后该函数提供一个 热重载时执行的回调方法 来清除 events 类似的东西 或继承当前引用
+          let _self = _getSelf(_path, _origin)
+          if (typeof _self === 'function') return _self.bind(thisArg)(...argumentsList)
+        },
+        construct (target, args) {
+          let _self = _getSelf(_path, _origin)
+          if (typeof _self === 'function') return new _self(...args)
+        }
+      })
+      require_mmap[_path] = {
+        value: _p,
+        time: Date.now()  // 防止短时间内触发多次
+      }
+      return _p
+    }
+
+    Module.prototype.require = _require
+
     fs.watch('./', {
       recursive: true
     }, (event, filename) => {
       let _path = path.join(__dirname, filename)
       if (event === 'change' && r1.cache[_path]) {
-        let origin = r1.cache[_path]
+
+        // 50 ms 内重复改动无效
+        let _proxy = require_mmap[_path]
+        if (_proxy !== undefined && _proxy.time + 50 > Date.now()) return
+
+        let _origin = r1.cache[_path]
         Reflect.deleteProperty(r1.cache, _path)
 
         // 清空定时器
@@ -398,37 +453,15 @@
         }
 
         try {
-          r2(_path)
+          _require(_path)
         } catch (e) {
           console.log(e)
-          r1.cache[_path] = origin
+          r1.cache[_path] = _origin
         }
+        // console.log(_path)
         console.log('hot reloaded ', _path)
       }
     })
-
-    Module.prototype.require = function (_path) {
-      _path = Module._resolveFilename(_path, this)
-      r2(_path)
-      let _p = new Proxy(() => {}, {
-        get (target, key) {
-          return  r2(_path)[key]
-        },
-        set (target, key, value) {
-          if(r2(_path)[key] === undefined) return false
-          r2(_path)[key] = value
-          return true
-        },
-        apply (target, thisArg, argumentsList) {
-          // TODO 可以获得调用该函数的文件地址， 然后该函数提供一个 热重载时执行的回调方法 来清除 events 类似的东西 或继承当前引用
-          if (r2(_path) === 'function') return r2(_path).bind(thisArg)(...argumentsList)
-        },
-        construct (target, args) {
-          if (r2(_path) === 'function') return new r2(_path)(...args)
-        }
-      })
-      return _p
-    }
   }
   // 总概念，利用 fs.watch + require + proxy 来实现 热更新，监听改变的文件，修改require.cache ，调用时 通过proxy 动态引用
 

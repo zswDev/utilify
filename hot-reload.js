@@ -1,6 +1,7 @@
 let Node = (param) => {
-  console.log('real-time-func',param,12)
+  console.log('real-time-func',param)
 }
+
 Node.id = 123
 
 module.exports = Node
