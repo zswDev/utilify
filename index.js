@@ -353,7 +353,11 @@
         Error.captureStackTrace(_obj_time, _func) // 传入当前函数，就不会打印当前 函数调用堆栈
         let _line = _obj_time.stack.split('at ')[1].split(' ')
         if (_line[0].length > _line[1].length) {
-          _line = '(' + _line[0].replace(/\s/, ')\n')
+          if (_line[3].length > _line[0].length) {
+            _line = _line[3]
+          } else {
+            _line = '(' + _line[0].replace(/\s/, ')\n')
+          }
         } else {
           _line = _line[1]
         }
@@ -408,28 +412,52 @@
       r2(_path)
       let _p = new Proxy(() => {}, {
         get (target, key) {
-          return r1.cache[_path].exports[key]
+          return  r2(_path)[key]
         },
         set (target, key, value) {
-          // TODO 处理失败情况
-          r1.cache[_path].exports[key] = value
+          if(r2(_path)[key] === undefined) return false
+          r2(_path)[key] = value
           return true
         },
         apply (target, thisArg, argumentsList) {
           // TODO 可以获得调用该函数的文件地址， 然后该函数提供一个 热重载时执行的回调方法 来清除 events 类似的东西 或继承当前引用
-          if (typeof r1.cache[_path].exports === 'function') {
-            return r1.cache[_path].exports.bind(thisArg)(...argumentsList)
-          }
+          if (r2(_path) === 'function') return r2(_path).bind(thisArg)(...argumentsList)
         },
         construct (target, args) {
-          if (typeof r1.cache[_path].exports === 'function') { // new _p(...) 时调用
-            return new r1.cache[_path].exports(...args)
-          }
+          if (r2(_path) === 'function') return new r2(_path)(...args)
         }
       })
       return _p
     }
   }
-
   // 总概念，利用 fs.watch + require + proxy 来实现 热更新，监听改变的文件，修改require.cache ，调用时 通过proxy 动态引用
+
+  _util.infoProxy = () => {
+    if (typeof require === 'undefined') throw new Error('this is nodejs function')
+
+    // 只执行一次
+    if (global.HAS_INFO_PROXY) return
+    global.HAS_INFO_PROXY = true
+
+    global.log = console.log
+    log = global.log
+    const obj1 = {}
+    const util = require('util')
+    console.log = function (...param) {
+      Error.captureStackTrace(obj1, console.log) // 传入当前函数，就不会打印当前 函数调用堆栈
+      let line = obj1.stack.split('at ')[1].split(' ')
+      if (line[0].length > line[1].length) {
+        if (line[3].length > line[0].length) {
+          line = line[3]
+        } else {
+          line = '(' + line[0].replace(/\s/, ')\n')
+        }
+      } else {
+        line = line[1]
+      }
+      // util.inspect(p1, {depth: null}) // depth 对象递归深度，默认2， 无限则为null
+      global.log(...param.map((p1) => util.inspect(p1)), `\nat ${line} `)
+    }
+  }
+  // 总概念，利用 Error 拿取错误堆栈，处理后得到 行数
 })()

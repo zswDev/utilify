@@ -28,7 +28,11 @@ console.log(number1, string1, boolean1, object1, array1, database1, anyone1, aab
 util.hotReload()
 
 let d = require('./hot-reload')
-setInterval(() => {
-  d(6661)
+setTimeout(() => {
+  d(666)
   console.log('real-time-value',d.id)
 }, 2000)
+
+util.infoProxy()
+
+console.log(123)
