@@ -66,8 +66,11 @@ let util = require('./index')
 util.hotReload()
 
 let d = require('./hot-reload')
+
+if (!global.i) global.i = 1
+ 
 setInterval(() => {
-  d(666) // d(66611)  Modify it  
+  d(++global.i) // d(--global.i)  Modify it  
   console.log('real-time-value',d.id)
 }, 2000)
 

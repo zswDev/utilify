@@ -37,5 +37,6 @@ setInterval(() => {
   console.log('real-time-value',d.id)
 }, 2000)
  
-//util.infoProxy()  
-console.log(123)
+util.infoProxy()  
+
+console.log(12312113)
