@@ -32,11 +32,13 @@ if (!global.i) {
   global.i = 1
 }  
 
-setInterval(() => {
-  d(++global.i)
-  console.log('real-time-value',d.id)
-}, 2000)
- 
-util.infoProxy()  
 
-console.log(12312113)
+// setTimeout(() => {
+//   d(++global.i)
+//   console.log(888)
+//   console.log('real-time-value',d.id)
+// }, 2000) 
+
+// util.infoProxy()
+
+console.log(1012)
