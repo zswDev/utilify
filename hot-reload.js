@@ -4,4 +4,7 @@ let Node = (param) => {
 
 Node.id = 123
 
-module.exports = Node
+module.exports = {
+    ...Node,
+    a: 1
+}

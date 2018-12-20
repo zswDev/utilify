@@ -321,6 +321,10 @@
         return value
       }
     }
+
+    // 异步清空错误信息
+    setImmediate(() => _err = [])
+
     return new Proxy(obj, {
       get: _get.bind({must: true, type: 'any', index: 0})
     })

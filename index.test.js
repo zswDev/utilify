@@ -1,4 +1,4 @@
-let util = require('./index')
+let util = require('./index.future')
 
 let data = {
   number1: '1',
@@ -33,10 +33,11 @@ if (!global.i) {
 }
 
 setTimeout(() => {
-  d(++global.i)
+ // d(++global.i)
   console.log('real-time-value',d.id)
 }, 2000)
 
+console.log(Object.keys(d))
 // util.infoProxy()
 
-console.log(1230)
+console.log(123)
