@@ -23,7 +23,7 @@ let {
   xyz,
 } = util.paramProxy(data)
 //let aab=1
-//console.log(number1, string1, boolean1, object1, array1, database1, anyone1, aab, RESULT, xyz)
+console.log(number1, string1, boolean1, object1, array1, database1, anyone1, aab, RESULT, xyz)
 
 util.hotReload()
 
@@ -31,7 +31,6 @@ let d = require('./hot-reload')
 if (!global.i) {
   global.i = 1
 }
-
 
 setTimeout(() => {
   d(++global.i)
