@@ -63,7 +63,7 @@ module.exports = Node
 ```javascript
 let util = require('./index')
 
-util.hotReload()
+util.hotReload(__dirname) // watch path
 
 let d = require('./hot-reload')
 
@@ -83,6 +83,28 @@ real-time-func 66611 12
 real-time-value 123
 
 ```
+#### Used in Babel
+
+Experimental
+
+##### *babel.test.js*
+
+```javascript
+require('babel-register')
+require('babel-polyfill')
+const path = require('path')
+const util = require('./index')
+const watch_path = path.join(__dirname, './src')
+util.hotReload(watch_path)
+
+// edit es6 code
+
+import api from './src/api'
+
+...
+
+```
+
 
 ### infoProxy()
 console.log proxy

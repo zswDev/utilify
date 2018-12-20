@@ -327,7 +327,7 @@
   }
   // 总概念，利用 proxy+解构 完成参数验证 let {a,b,c} = new Proxy({},{get(){}})
 
-  _util.hotReload = function () {
+  _util.hotReload = function (ROOT) {
     if (typeof require === 'undefined') throw new Error('this is nodejs function')
 
     // 只执行一次
@@ -401,8 +401,13 @@
         return _self
     }
 
+    const root_len = ROOT.length
     const _require = function (_path) {
       _path = Module._resolveFilename(_path, this)
+
+      if (_path.substring(0, root_len) !== ROOT) {  // 非指定目录直接返回
+          return r2(_path)
+      }
 
       _time_func[1][0](() => {  // 为啥要异步加载?
          Module._load(_path) // 每次热加载 都需重新 require
@@ -420,9 +425,8 @@
         },
         set (target, key, value) {
           let _self = _getSelf(_path)
-          if (_self[key] === undefined) return false
-          _self[key] = value
-          return true
+          // if (_self[key] === undefined) return false
+          return (_self[key] = value)
         },
         apply (target, thisArg, argumentsList) {
           // TODO 可以获得调用该函数的文件地址， 然后该函数提供一个 热重载时执行的回调方法 来清除 events 类似的东西 或继承当前引用
@@ -444,12 +448,14 @@
 
     Module.prototype.require = _require
 
-    fs.watch('./', {
+    fs.watch(ROOT, {
       recursive: true
     }, (event, filename) => {
       let _path = path.join(__dirname, filename)
-      // 热函数所在的目录更新不执行
-      if (event === 'change'&& _path !== __filename && r1.cache[_path]) {
+      // 热函数所在的目录更新不执行, 只更新指定目录
+      if (event === 'change'&& _path !== __filename && _path.substring(0, root_len) === ROOT && r1.cache[_path]) {
+
+        console.log(_path)
 
         // 50 ms 内重复改动无效
         let _proxy = require_mmap[_path]
