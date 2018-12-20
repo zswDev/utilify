@@ -394,7 +394,7 @@
     const _getSelf = (_path, ) => {
         let _self = r1.cache[_path]
         if (_self === undefined) {  // 该对象是原生对象
-            _self = r2(_path)
+            _self = Module._load(_path)
         } else {
             _self = _self.exports
         }
@@ -405,7 +405,7 @@
       _path = Module._resolveFilename(_path, this)
 
       _time_func[1][0](() => {  // 为啥要异步加载?
-         r2(_path) // 每次热加载 都需重新 require
+         Module._load(_path) // 每次热加载 都需重新 require
       })
 
       let _proxy = require_mmap[_path]
@@ -434,6 +434,7 @@
           if (typeof _self === 'function') return new _self(...args)
         }
       })
+
       require_mmap[_path] = {
         time: Date.now(),
         value: _p
@@ -447,7 +448,7 @@
       recursive: true
     }, (event, filename) => {
       let _path = path.join(__dirname, filename)
-      // 该函数所在的目录更新不热加载
+      // 热函数所在的目录更新不执行
       if (event === 'change'&& _path !== __filename && r1.cache[_path]) {
 
         // 50 ms 内重复改动无效
