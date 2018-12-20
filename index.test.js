@@ -30,7 +30,7 @@ util.hotReload()
 let d = require('./hot-reload')
 if (!global.i) {
   global.i = 1
-}  
+}
 
 
 // setTimeout(() => {
@@ -39,6 +39,6 @@ if (!global.i) {
 //   console.log('real-time-value',d.id)
 // }, 2000) 
 
-// util.infoProxy()
+//util.infoProxy()
 
-console.log(1012)
+console.log(123)

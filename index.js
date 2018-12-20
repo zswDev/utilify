@@ -337,7 +337,6 @@
     const fs = require('fs')
     const path = require('path')
     const Module = require('module')
-    const util = require('util')
 
      // 重写定时器
     const _time_func = {
@@ -392,25 +391,22 @@
     const r2 = Module.prototype.require
     const require_mmap = {}
 
-    const _getSelf = (_path, _origin) => {
-      let _self = r1.cache[_path]
-      if (_self === undefined) {  // 该对象是原生对象
-        _self = _origin
-      } else {
-        _self = _self.exports
-      }
-      return _self
+    const _getSelf = (_path, ) => {
+        let _self = r1.cache[_path]
+        if (_self === undefined) {  // 该对象是原生对象
+            _self = r2(_path)
+        } else {
+            _self = _self.exports
+        }
+        return _self
     }
-
-    // TODO linux bug
 
     const _require = function (_path) {
       _path = Module._resolveFilename(_path, this)
 
-      let _origin = Module._load(_path)     // 原始引用对象, 每次热加载 都重新 require
-      // console.log(util.inspect(_origin, {depth: null}) && 'proxy_require_file: ', _path)
-      
-      //console.log(_path,'222222222222222222222', _origin)
+      _time_func[1][0](() => {  // 为啥要异步加载?
+         r2(_path) // 每次热加载 都需重新 require
+      })
 
       let _proxy = require_mmap[_path]
       if (_proxy !== undefined) {
@@ -420,21 +416,21 @@
 
       let _p = new Proxy(() => {}, {
         get (target, key) {
-          return _getSelf(_path, _origin)[key]
+          return _getSelf(_path)[key]
         },
         set (target, key, value) {
-          let _self = _getSelf(_path, _origin)
+          let _self = _getSelf(_path)
           if (_self[key] === undefined) return false
           _self[key] = value
           return true
         },
         apply (target, thisArg, argumentsList) {
           // TODO 可以获得调用该函数的文件地址， 然后该函数提供一个 热重载时执行的回调方法 来清除 events 类似的东西 或继承当前引用
-          let _self = _getSelf(_path, _origin)
+          let _self = _getSelf(_path)
           if (typeof _self === 'function') return _self.bind(thisArg)(...argumentsList)
         },
         construct (target, args) {
-          let _self = _getSelf(_path, _origin)
+          let _self = _getSelf(_path)
           if (typeof _self === 'function') return new _self(...args)
         }
       })
@@ -447,39 +443,12 @@
 
     Module.prototype.require = _require
 
-    // 获取根目录
-    const _root = {}
-    Error.captureStackTrace(_root, _util.hotReload) // 传入当前函数，就不会打印当前 函数调用堆栈
-    let _line = _root.stack.split('at ')[1].split(' ')
-    if (_line[0].length > _line[1].length) {
-      if (_line[3].length > _line[0].length) {
-        _line = _line[3]
-      } else {
-        _line = '(' + _line[0].replace(/\s/, ')\n')
-      }
-    } else {
-      _line = _line[1]
-    }
-    
-    _line = _line.substring(0, _line.length - 2).substring(1, _line.length - 2).split(':')
-    
-    // 注意平台兼容性
-    if (process.platform === 'win32') {
-      _line = `${_line[0]}:${_line[1]}`
-    } else if (process.platform === 'linux') {
-      _line = _line[0]
-    }
-
-    // console.log(_line)
-
-    const ROOT = _line
-
     fs.watch('./', {
       recursive: true
     }, (event, filename) => {
       let _path = path.join(__dirname, filename)
-      // 第一此调用该函数的目录 和 该函数所在的目录更新不热加载
-      if (event === 'change'&& _path !== ROOT && _path !== __filename && r1.cache[_path]) {
+      // 该函数所在的目录更新不热加载
+      if (event === 'change'&& _path !== __filename && r1.cache[_path]) {
 
         // 50 ms 内重复改动无效
         let _proxy = require_mmap[_path]
@@ -490,19 +459,9 @@
           _timer[_path].map((f1) => f1.clear(f1.time))
           _timer[_path] = []
         }
-        
-        // let _origin = r1.cache[_path]
+
         Reflect.deleteProperty(r1.cache, _path)
         _require(_path)
-
-        // try {
-        //   _require(_path)
-        // } catch (e) {
-        //   console.log(e)
-        //   r1.cache[_path] = _origin
-        // }
-        // console.log(_path)
-        // console.log('hot reloaded ', _path)
       }
     })
   }
