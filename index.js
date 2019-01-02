@@ -408,7 +408,9 @@
         return _self
     }
 
+    const self_get = {}  // 文件调用者列表, 如果当前被重载的文件 导出类型变化，则重载调用过文件
     const root_len = ROOT.length
+
     const _require = function (_path) {
       _path = Module._resolveFilename(_path, this)
 
@@ -426,7 +428,8 @@
         return _proxy.value
       }
 
-      let _p = new Proxy(() => {}, {
+      let _origin = ()=>{}
+      let _p = new Proxy(_origin, {
         get (target, key) {
           return _getSelf(_path)[key]
         },

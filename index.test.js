@@ -37,6 +37,8 @@ setTimeout(() => {
   console.log('real-time-value',d.id)
 }, 2000)
 
+d(123)
+
 console.log(Object.keys(d))
 // util.infoProxy()
 

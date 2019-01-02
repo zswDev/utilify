@@ -416,7 +416,7 @@
 
       if (types === undefined) { // 第一次加载
         let file_obj = r2(_path)
-        types = typeof file_obj === 'function' ? function () {} : file_obj   // proxy 代理 原对象 分函数 和 {}
+        types = typeof file_obj === 'function' ? ()=>{} : file_obj   // proxy 代理 原对象 分函数 和 {}
       } else {
         _time_func[1][0](() => {  // 为啥要异步加载?
           let file_obj = r2(_path) // 每次热加载 都需重新 require
@@ -433,7 +433,8 @@
         return _proxy.value
       }
 
-      let _p = new Proxy(types, {
+      let _origin = ()=>{}
+      let _p = new Proxy(_origin, {
         get (target, key) {
           return _getSelf(_path)[key]
         },
@@ -449,7 +450,7 @@
           let _key = []
           for (let _k1 in _self) {
             _key.push(_k1)
-            types[_k1] = _self[_k1]
+            _origin[_k1] = _self[_k1]
           }
           return _key
         },
@@ -488,7 +489,7 @@
           _timer[_path] = []
         }
 
-        let type = r1.cache[_path].exports === 'function' ? function () {} : {}
+        let type = r1.cache[_path].exports === 'function' ? ()=>{} : {}
         Reflect.deleteProperty(r1.cache, _path)
         _require(_path, type)
       }
