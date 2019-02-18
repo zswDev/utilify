@@ -6,7 +6,7 @@
   } else if (typeof window !== 'undefined') {
     window.util = _util
   }
-
+  //111
   // sql 验证
 
   var SqlString  = {};
