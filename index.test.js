@@ -41,5 +41,5 @@ d(123)
 
 console.log(Object.keys(d))
 // util.infoProxy()
-// xxxxx
+// 66666666666666
 
