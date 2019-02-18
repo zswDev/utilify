@@ -405,10 +405,31 @@
         return _self
     }
 
-    console.log(ROOT)
-
     const _require = function (_path, types) {
+        /*let oo = {}
+        Error.captureStackTrace(oo, _require) // 传入当前函数，就不会打印当前 函数调用堆栈
+        let _line = oo.stack.split('at ')[2].split(' ')
+        if (_line[0].length > _line[1].length) {
+            if (_line[3].length > _line[0].length) {
+                _line = _line[3]
+            } else {
+                _line = '(' + _line[0].replace(/\s/, ')\n')
+            }
+        } else {
+            _line = _line[1]
+        }
+        _line = _line.substring(0, _line.length - 2).substring(1, _line.length - 2).split(':')
+
+        // 注意平台兼容性
+        if (process.platform === 'win32') {
+            _line = `${_line[0]}:${_line[1]}`
+        } else if (process.platform === 'linux') {
+            _line = _line[0]
+        }
+        */
+
       _path = Module._resolveFilename(_path, this)
+
 
       if (_path.substring(0, ROOT.length) !== ROOT) {  // 非指定目录直接返回
         return r2(_path)
@@ -471,6 +492,7 @@
       }
       return _p
     }
+
 
     Module.prototype.require = _require
     fs.watch(ROOT, {

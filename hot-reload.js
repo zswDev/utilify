@@ -1,4 +1,4 @@
-let Node = (param) => {
+let Node = function (param) {
   console.log('real-time-func',param)
 }
 
