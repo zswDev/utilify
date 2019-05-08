@@ -290,10 +290,60 @@
       return [true, data]
     }
   }
+  const verifyProxy = {}
 
   // conf 设置默认值
   // TODO 设置其他限制，如长度等
+
+  let _get = function (target, key) {
+    let {type, index} = this
+    let {data, conf} = target
+
+    if (key === 'RESULT') {
+      target.must = false
+      return target.err.pop() // 出栈
+    }
+    if (typeof verify[key] === 'function' && index === 0) { // 是验证类型 且为第一层
+      return verifyProxy[key]
+    } else {
+      let func = verify[type]
+      let [done, value] = func(data[key])  // 改函数除了验证处理外，还设置了默认值
+      if (target.must) {
+        if (!done) {
+          if (conf[type] !== undefined) { // 有默认值则不报错
+            return conf[type]
+          } else {
+            target.err.push(`${typeof key === 'string' ? key : 'PARAM'} is null or TYPE err`) // 入栈
+          }
+        }
+      }
+      return value
+    }
+  }
+
+  // 只有那么多类型的拦截器
+  // 拦截器改变 拦截对象进行复用
+  let originProxy = {}
+  let createProxy = (type, index=1) => new Proxy(originProxy, {get: _get.bind({type, index})})
+  let masterProxy = createProxy('any', 0)
+  let _keys = Object.keys(verify)
+  for (let _k1 of _keys) {
+    verifyProxy[_k1] = createProxy(_k1)
+  }
+
   _util.paramProxy = (obj, conf = {}) => {
+
+    originProxy.err = [] // 错误堆栈
+    originProxy.data = obj
+    originProxy.must = true
+    originProxy.conf = conf
+
+    setImmediate(() =>origin = {}) // 异步清空错误信息
+    return masterProxy
+  }
+
+
+  _util.paramProxy1 =(obj, conf = {}) => {
     let _err = [] // 错误堆栈
     let _get = function (target, key) {
       let _self = this
@@ -324,7 +374,7 @@
 
     // 异步清空错误信息
     setImmediate(() => {
-      console.log('clear arr')
+      //console.log('clear arr')
       _err = []
     })
 

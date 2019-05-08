@@ -296,6 +296,7 @@
   _util.paramProxy = (obj, conf = {}) => {
     let _err = [] // 错误堆栈
     let _get = function (target, key) {
+      //console.log(key)
       let _self = this
       if (key === 'RESULT') {
         _self.must = false

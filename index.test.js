@@ -1,4 +1,4 @@
-let util = require('./index.future')
+let util = require('./index')
 
 let data = {
   number1: '1',
@@ -10,23 +10,27 @@ let data = {
   anyone1: 'abc'
 }
 // int,str,bool,obj,arr,db is a Parameter Types
-let {
-  int: {number1},
-  str: {string1},
-  bool: {boolean1},
-  obj: {object1},
-  arr: {array1},
-  db: {database1},
-  anyone1,
-  aab,
-  RESULT,  // The result is a required parameter before, and the result is an optional parameter.
-  xyz,
-} = util.paramProxy(data)
-//let aab=1
-console.log(number1, string1, boolean1, object1, array1, database1, anyone1, aab, RESULT, xyz)
+let t1 = Date.now()
+for (let i=0;i<1024*10;i++) {
+    let {
+        int: {number1},
+        str: {string1},
+        bool: {boolean1},
+        obj: {object1},
+        arr: {array1},
+        db: {database1},
+        anyone1,
+        aab,
+        RESULT,  // The result is a required parameter before, and the result is an optional parameter.
+        xyz,
+    } = util.paramProxy1(data)
+}
+console.log(Date.now() - t1)
+// let aab=1
+//console.log(number1, string1, boolean1, object1, array1, database1, anyone1, aab, RESULT, xyz)
 
 //util.hotReload(__dirname)
-
+/*
 let d = require('./hot-reload')
 if (!global.i) {
   global.i = 1
@@ -40,6 +44,10 @@ setTimeout(() => {
 d(123)
 
 console.log(Object.keys(d))
+*/
 // util.infoProxy()
 // aaaa11
+
+
+
 
