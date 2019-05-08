@@ -249,12 +249,12 @@
   ]
   const verify = {
     int (data) {
-      data = parseInt(data)
-      if (isNaN(data)) return [false, 0]
+      data = Number(data)
+      if (isNaN(data))  return [false, 0]
       return [true, data]
     },
     str (data) {
-      data = data.toString()
+      data = String(data)
       if (data === '') return [false, '']
       return [true, data]
     },

@@ -23,7 +23,7 @@ for (let i=0;i<1024*10;i++) {
         aab,
         RESULT,  // The result is a required parameter before, and the result is an optional parameter.
         xyz,
-    } = util.paramProxy1(data)
+    } = util.paramProxy1(data,)
 }
 console.log(Date.now() - t1)
 // let aab=1
