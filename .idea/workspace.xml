@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="17f5a3fa-d7c6-41c9-8f47-169a939ea73b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/hot-reload.js" beforeDir="false" afterPath="$PROJECT_DIR$/hot-reload.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.future.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.future.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -15,48 +13,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="-93787886">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="4" />
-          <entry key="project.open.time.0" value="3" />
-          <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.4" value="1" />
-          <entry key="project.opened" value="5" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="js" value="5" />
-          <entry key="md" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="JavaScript" value="5" />
-          <entry key="PLAIN_TEXT" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="js" value="1124" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="JavaScript" value="1124" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hot-reload.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="6" column="21" lean-forward="true" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+            <state relative-caret-position="125">
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
@@ -64,7 +27,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="25">
+            <state relative-caret-position="10975">
               <caret line="439" column="10" selection-start-line="439" selection-start-column="10" selection-end-line="439" selection-end-column="10" />
             </state>
           </provider>
@@ -73,87 +36,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.future.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="476" column="10" lean-forward="true" selection-start-line="475" selection-start-column="13" selection-end-line="476" selection-end-column="10" />
+            <state relative-caret-position="11800">
+              <caret line="476" column="10" selection-start-line="475" selection-start-column="13" selection-end-line="476" selection-end-column="10" />
               <folding>
                 <element signature="e#73#105#0" />
                 <element signature="e#146#175#0" />
-                <element signature="e#405#591#0" />
-                <element signature="e#656#1096#0" />
-                <element signature="e#686#870#0" />
-                <element signature="e#752#845#0" />
-                <element signature="e#897#974#0" />
-                <element signature="e#980#1092#0" />
-                <element signature="e#1168#1997#0" />
-                <element signature="e#1213#1241#0" />
-                <element signature="e#1247#1993#0" />
-                <element signature="e#1275#1323#0" />
-                <element signature="e#1330#1361#0" />
-                <element signature="e#1368#1946#0" />
-                <element signature="e#1416#1494#0" />
-                <element signature="e#1524#1590#0" />
-                <element signature="e#1622#1681#0" />
-                <element signature="e#1730#1785#0" />
-                <element signature="e#1813#1871#0" />
-                <element signature="e#1877#1946#0" />
-                <element signature="e#1953#1987#0" />
-                <element signature="e#2063#2404#0" />
-                <element signature="e#2127#2383#0" />
-                <element signature="e#2186#2284#0" />
-                <element signature="e#2290#2377#0" />
-                <element signature="e#2484#3427#0" />
-                <element signature="e#2510#2535#0" />
-                <element signature="e#2598#2630#0" />
-                <element signature="e#2859#3233#0" />
-                <element signature="e#2914#2941#0" />
-                <element signature="e#3261#3316#0" />
-                <element signature="e#3351#3403#0" />
-                <element signature="e#3494#4700#0" />
-                <element signature="e#3555#3583#0" />
-                <element signature="e#3725#3994#0" />
-                <element signature="e#4000#4428#0" />
-                <element signature="e#4081#4139#0" />
-                <element signature="e#4763#4823#0" />
-                <element signature="e#4896#5188#0" />
-                <element signature="e#4945#5167#0" />
-                <element signature="e#5014#5041#0" />
-                <element signature="e#5226#5411#0" />
-                <element signature="e#5261#5328#0" />
-                <element signature="e#5341#5406#0" />
-                <element signature="e#5442#5972#0" />
-                <element signature="e#5593#5735#0" />
-                <element signature="e#5763#5829#0" />
-                <element signature="e#5864#5932#0" />
-                <element signature="e#6008#6137#0" />
-                <element signature="e#6077#6113#0" />
-                <element signature="e#6169#6414#0" />
-                <element signature="e#6191#6214#0" />
-                <element signature="e#6278#6392#0" />
-                <element signature="e#6446#6483#0" />
-                <element signature="e#6500#6547#0" />
-                <element signature="e#6565#7823#0" />
-                <element signature="e#6582#6684#0" />
-                <element signature="e#6701#6805#0" />
-                <element signature="e#6823#7047#0" />
-                <element signature="e#6862#7015#0" />
-                <element signature="e#6910#6977#0" />
-                <element signature="e#7064#7169#0" />
-                <element signature="e#7186#7331#0" />
-                <element signature="e#7347#7442#0" />
-                <element signature="e#7459#7819#0" />
-                <element signature="e#7467#7483#0" />
-                <element signature="e#7694#7787#0" />
-                <element signature="e#7827#7840#0" />
-                <element signature="e#7970#8734#0" />
-                <element signature="e#8023#8091#0" />
-                <element signature="e#8159#8283#0" />
-                <element signature="e#8206#8274#0" />
-                <element signature="e#8289#8728#0" />
-                <element signature="e#8422#8699#0" />
-                <element signature="e#8445#8689#0" />
-                <element signature="e#8495#8560#0" />
-                <element signature="e#8566#8677#0" />
-                <element signature="e#11134#11867#0" />
               </folding>
             </state>
           </provider>
@@ -162,8 +49,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
-              <caret line="41" column="27" lean-forward="true" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
+            <state relative-caret-position="1025">
+              <caret line="41" column="27" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -183,22 +70,9 @@
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER">
-    <package-json value="$PROJECT_DIR$/package.json" />
-  </component>
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
-  </component>
-  <component name="NodePackageJsonFileManager">
-    <packageJsonPaths>
-      <path value="$PROJECT_DIR$/package.json" />
-    </packageJsonPaths>
-  </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="520" />
-    <option name="width" value="1302" />
+    <option name="width" value="1303" />
     <option name="height" value="1010" />
   </component>
   <component name="ProjectView">
@@ -206,6 +80,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -217,10 +92,10 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="editorconfig.notification" value="null" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -259,11 +134,12 @@
       <workItem from="1546419440495" duration="229000" />
       <workItem from="1546424852576" duration="1772000" />
       <workItem from="1548214415846" duration="3028000" />
+      <workItem from="1557308964745" duration="195000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11816000" />
+    <option name="totallyTimeSpent" value="12011000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -275,9 +151,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13909379" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13870542" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -291,7 +168,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.30076003" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.30028328" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -299,9 +176,6 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/README.md">
@@ -311,111 +185,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/hot-reload.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
+        <state relative-caret-position="10975">
           <caret line="439" column="10" selection-start-line="439" selection-start-column="10" selection-end-line="439" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.future.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="476" column="10" lean-forward="true" selection-start-line="475" selection-start-column="13" selection-end-line="476" selection-end-column="10" />
+        <state relative-caret-position="11800">
+          <caret line="476" column="10" selection-start-line="475" selection-start-column="13" selection-end-line="476" selection-end-column="10" />
           <folding>
             <element signature="e#73#105#0" />
             <element signature="e#146#175#0" />
-            <element signature="e#405#591#0" />
-            <element signature="e#656#1096#0" />
-            <element signature="e#686#870#0" />
-            <element signature="e#752#845#0" />
-            <element signature="e#897#974#0" />
-            <element signature="e#980#1092#0" />
-            <element signature="e#1168#1997#0" />
-            <element signature="e#1213#1241#0" />
-            <element signature="e#1247#1993#0" />
-            <element signature="e#1275#1323#0" />
-            <element signature="e#1330#1361#0" />
-            <element signature="e#1368#1946#0" />
-            <element signature="e#1416#1494#0" />
-            <element signature="e#1524#1590#0" />
-            <element signature="e#1622#1681#0" />
-            <element signature="e#1730#1785#0" />
-            <element signature="e#1813#1871#0" />
-            <element signature="e#1877#1946#0" />
-            <element signature="e#1953#1987#0" />
-            <element signature="e#2063#2404#0" />
-            <element signature="e#2127#2383#0" />
-            <element signature="e#2186#2284#0" />
-            <element signature="e#2290#2377#0" />
-            <element signature="e#2484#3427#0" />
-            <element signature="e#2510#2535#0" />
-            <element signature="e#2598#2630#0" />
-            <element signature="e#2859#3233#0" />
-            <element signature="e#2914#2941#0" />
-            <element signature="e#3261#3316#0" />
-            <element signature="e#3351#3403#0" />
-            <element signature="e#3494#4700#0" />
-            <element signature="e#3555#3583#0" />
-            <element signature="e#3725#3994#0" />
-            <element signature="e#4000#4428#0" />
-            <element signature="e#4081#4139#0" />
-            <element signature="e#4763#4823#0" />
-            <element signature="e#4896#5188#0" />
-            <element signature="e#4945#5167#0" />
-            <element signature="e#5014#5041#0" />
-            <element signature="e#5226#5411#0" />
-            <element signature="e#5261#5328#0" />
-            <element signature="e#5341#5406#0" />
-            <element signature="e#5442#5972#0" />
-            <element signature="e#5593#5735#0" />
-            <element signature="e#5763#5829#0" />
-            <element signature="e#5864#5932#0" />
-            <element signature="e#6008#6137#0" />
-            <element signature="e#6077#6113#0" />
-            <element signature="e#6169#6414#0" />
-            <element signature="e#6191#6214#0" />
-            <element signature="e#6278#6392#0" />
-            <element signature="e#6446#6483#0" />
-            <element signature="e#6500#6547#0" />
-            <element signature="e#6565#7823#0" />
-            <element signature="e#6582#6684#0" />
-            <element signature="e#6701#6805#0" />
-            <element signature="e#6823#7047#0" />
-            <element signature="e#6862#7015#0" />
-            <element signature="e#6910#6977#0" />
-            <element signature="e#7064#7169#0" />
-            <element signature="e#7186#7331#0" />
-            <element signature="e#7347#7442#0" />
-            <element signature="e#7459#7819#0" />
-            <element signature="e#7467#7483#0" />
-            <element signature="e#7694#7787#0" />
-            <element signature="e#7827#7840#0" />
-            <element signature="e#7970#8734#0" />
-            <element signature="e#8023#8091#0" />
-            <element signature="e#8159#8283#0" />
-            <element signature="e#8206#8274#0" />
-            <element signature="e#8289#8728#0" />
-            <element signature="e#8422#8699#0" />
-            <element signature="e#8445#8689#0" />
-            <element signature="e#8495#8560#0" />
-            <element signature="e#8566#8677#0" />
-            <element signature="e#11134#11867#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="41" column="27" lean-forward="true" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hot-reload.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="6" column="21" lean-forward="true" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+        <state relative-caret-position="1025">
+          <caret line="41" column="27" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
         </state>
       </provider>
     </entry>

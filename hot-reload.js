@@ -4,4 +4,5 @@ let Node = function (param) {
 
 Node.id = 123
 
+
 module.exports = Node
